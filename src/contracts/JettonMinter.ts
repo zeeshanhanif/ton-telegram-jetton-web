@@ -1,4 +1,4 @@
-import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, Sender, SendMode, toNano, internal as internal_relaxed, storeMessageRelaxed } from '@ton/core';
+import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, Sender, SendMode, toNano, /*internal as internal_relaxed, storeMessageRelaxed*/ } from '@ton/core';
 
 import { Op } from './JettonConstants';
 
@@ -79,6 +79,9 @@ export class JettonMinter implements Contract {
                .endCell();
     }
     async sendMint(provider: ContractProvider, via: Sender, to: Address, jetton_amount: bigint, forward_ton_amount: bigint, total_ton_amount: bigint) {
+        console.log("testing ...1 ", via);
+        console.log("testing ...2 ", via.address);
+        console.log("testing ...3 to address ", to);
         if(total_ton_amount <= forward_ton_amount) {
             throw new Error("Total ton amount should be > forward amount");
         }
